@@ -1,0 +1,42 @@
+<view class="profile-bg">
+  <image class="profile-bg-img" src="/images/emotion-bg.jpg" mode="aspectFill" />
+  <view class="profile-container">
+    <view class="profile-content">
+      <view class="user-info profile-card profile-login-card">
+        <image class="avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+        <view class="user-details">
+          <text class="username">{{userInfo.nickName || '未登录'}}</text>
+          <text class="user-desc">{{userInfo.desc || '点击登录账号'}}</text>
+        </view>
+        <button class="login-btn" wx:if="{{!userInfo.nickName}}" bindtap="loginAccount">登录</button>
+      </view>
+      <view class="menu-list profile-card">
+        <view class="menu-item" wx:for="{{menuItems}}" wx:key="id" bindtap="handleMenuClick" data-item="{{item}}">
+          <image class="menu-icon" src="{{item.icon}}" mode="aspectFit" />
+          <view class="menu-content">
+            <text class="menu-title">{{item.title}}</text>
+            <text class="menu-desc">{{item.desc}}</text>
+          </view>
+          <image class="menu-arrow" src="/images/icons/arrow-right.png" mode="aspectFit" />
+        </view>
+      </view>
+      <view class="stats-section profile-card">
+        <view class="stats-title">使用统计</view>
+        <view class="stats-grid">
+          <view class="stat-item">
+            <text class="stat-number">{{stats.totalDays}}</text>
+            <text class="stat-label">使用天数</text>
+          </view>
+          <view class="stat-item">
+            <text class="stat-number">{{stats.totalSessions}}</text>
+            <text class="stat-label">放松次数</text>
+          </view>
+          <view class="stat-item">
+            <text class="stat-number">{{stats.totalMinutes}}</text>
+            <text class="stat-label">总时长(分钟)</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> 

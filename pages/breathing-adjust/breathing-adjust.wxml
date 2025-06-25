@@ -1,0 +1,30 @@
+<!--pages/breathing-adjust/breathing-adjust.wxml-->
+<view class="breath-bg" style="background-image: url({{backgroundImage}});">
+  <view class="breath-header-row">
+    <text class="breath-title">呼吸调</text>
+    <view class="breath-menu">...</view>
+  </view>
+  <view class="breath-method-desc">{{elementDesc}}</view>
+  <view class="breath-center">
+    <view class="liquid-ball {{isBreathing ? 'breathing' : ''}}">
+      <svg viewBox="0 0 200 200" class="liquid-svg">
+        <defs>
+          <linearGradient id="liquidGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#b3e5fc"/>
+            <stop offset="100%" stop-color="#0288d1"/>
+          </linearGradient>
+        </defs>
+        <path :d="{{wavePath}}" fill="url(#liquidGradient)"/>
+      </svg>
+      <image class="breath-ball-img" src="{{ballImage}}" mode="aspectFit" />
+    </view>
+  </view>
+  <view class="breath-step-cue">
+    {{breathSteps[breathStep].label}}，
+    {{breathSteps[breathStep].label === '吸气' ? '深深吸气' : (breathSteps[breathStep].label === '呼气' ? '慢慢呼气' : '')}}
+    <text wx:if="{{breathStepRemain > 0}}">（{{breathStepRemain}}）</text>
+  </view>
+  <view class="breath-bottom-row">
+    <button class="breath-btn" bindtap="toggleBreath">{{isBreathing ? '暂停呼吸' : '开始呼吸'}}</button>
+  </view>
+</view>

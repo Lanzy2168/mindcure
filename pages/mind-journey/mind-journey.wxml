@@ -1,0 +1,100 @@
+<view class="mind-journey-container">
+  <!-- 顶部信息 -->
+  <view class="header card">
+    <view class="header-content">
+      <text class="page-title">心游境</text>
+      <text class="page-subtitle">适合当前情绪的活动推荐</text>
+    </view>
+    <view class="current-element">
+      <text class="element-character">{{currentElement.character}}</text>
+      <text class="element-name">{{currentElement.name}}</text>
+    </view>
+  </view>
+
+  <!-- 活动推荐 -->
+  <view class="activities-section card">
+    <view class="section-header">
+      <text class="section-title">今日推荐</text>
+      <text class="section-subtitle">基于您的情绪状态</text>
+    </view>
+    
+    <view class="activities-list">
+      <view 
+        wx:for="{{recommendedActivities}}" 
+        wx:key="index"
+        class="activity-item"
+        bindtap="selectActivity"
+        data-activity="{{item}}"
+      >
+        <view class="activity-icon">
+          <text>{{item.icon}}</text>
+        </view>
+        <view class="activity-info">
+          <text class="activity-title">{{item.title}}</text>
+          <text class="activity-desc">{{item.description}}</text>
+          <text class="activity-duration">{{item.duration}}</text>
+        </view>
+        <view class="activity-arrow">
+          <text>→</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 五行切换 -->
+  <view class="element-switcher">
+    <view class="switcher-title">
+      <text>切换五行</text>
+    </view>
+    <view class="element-buttons">
+      <view 
+        wx:for="{{fiveElements}}" 
+        wx:key="id"
+        class="element-btn {{currentElement.id === item.id ? 'active' : ''}}"
+        bindtap="switchElement"
+        data-element="{{item}}"
+      >
+        <text class="element-char">{{item.character}}</text>
+        <text class="element-label">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 活动历史 -->
+  <view class="activity-history card">
+    <view class="history-header">
+      <text class="history-title">热门活动</text>
+    </view>
+    
+    <view class="history-list">
+      <view 
+        wx:for="{{activityHistory}}" 
+        wx:key="index"
+        class="history-item"
+      >
+        <view class="history-icon">
+          <text>{{item.icon}}</text>
+        </view>
+        <view class="history-info">
+          <text class="history-title">{{item.title}}</text>
+          <text class="history-date">{{item.date}}</text>
+        </view>
+        <view class="history-rating">
+          <text class="rating-text">{{item.rating}}分</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="bottom-actions">
+    <button class="action-btn btn-secondary" bindtap="addToFavorites">
+      <image class="action-icon" src="/images/icons/aixin.png" mode="aspectFit" style="width:80rpx;height:80rpx;" />
+      <text class="action-text">收藏活动</text>
+    </button>
+    <button class="action-btn btn-cool" bindtap="shareActivity">
+      <image class="action-icon" src="/images/icons/youxiang.png" mode="aspectFit" style="width:80rpx;height:80rpx;" />
+      <text class="action-text">分享活动</text>
+    </button>
+  </view>
+</view> 

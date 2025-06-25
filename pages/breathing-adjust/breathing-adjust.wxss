@@ -1,0 +1,172 @@
+/* pages/breathing-adjust/breathing-adjust.wxss */
+.breath-bg {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.breath-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.03);  /* 大背景 白色透明度  */
+  backdrop-filter: blur(6px);
+  z-index: 1;
+}
+.breath-header-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 48rpx 32rpx 0 32rpx;
+  position: relative;
+  z-index: 2;
+}
+.breath-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: rgb(122, 122, 122);
+ 
+}
+.breath-menu {
+  font-size: 36rpx;
+  color: rgb(97, 97, 97);
+  padding: 8rpx 16rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+}
+.breath-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  color: rgb(97, 97, 97);
+}
+.breath-ball-img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 210rpx;
+  height: 210rpx;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+  
+}
+.liquid-ball {
+  position: absolute;
+  bottom: 680rpx;
+  width: 320rpx;
+  height: 320rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8rpx 32rpx rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform 1.2s cubic-bezier(0.4,0,0.2,1);
+  
+}
+.liquid-ball.breathing {
+  animation: breathScale 4s infinite alternate;
+}
+@keyframes breathScale {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.30); }
+  100% { transform: scale(1.2); }
+}
+.liquid-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  
+}
+.breath-bottom-row {
+  position: absolute;
+  width:600rpx;
+  bottom: 450rpx;       /* 控制距离底部距离 */
+  left: 75rpx;
+  right: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: centre;
+  position: relative;
+  z-index: 2;
+}
+
+.breath-btn {
+  flex: 1;
+  margin-left: 32rpx;
+  background: rgba(255, 255, 255, 0.21); /* 按钮透明度  */
+  backdrop-filter: blur(8px);
+  color: rgb(114, 114, 114);  /* 开始呼吸 颜色  */
+  font-size: 42rpx;
+  font-weight: bold;
+  border-radius: 40rpx;
+  padding: 20rpx 0;
+  border: 1rpx solid rgba(255, 255, 255, 0.47);  /* 开始呼吸 按钮线框  */
+
+  
+  /* 新增阴影效果 */
+  box-shadow: 0 4rpx 16rpx rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.breath-btn:active {
+  box-shadow: 0 2rpx 8rpx rgba(2, 136, 209, 0.4);
+  transform: scale(0.98);
+}
+
+.breath-method-desc {
+  text-align: left;
+  font-size: 30rpx;
+  color: rgb(126, 124, 124);
+  line-height: 2.2;
+  margin: 24rpx 40rpx 32rpx 40rpx;
+  letter-spacing: 1rpx;
+  background: rgba(255, 255, 255, 0.15); /* 呼吸法透明度 */
+  left:12rpx;
+  backdrop-filter: blur(8px);
+  padding: 24rpx 32rpx;
+  border-radius: 24rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.47); 
+  
+  position: relative;
+  z-index: 2;
+}
+.breath-step-cue {
+  display: inline-block; /* 使宽度自适应内容 */
+  position: absolute;
+  bottom: 640rpx;       /* 控制距离底部距离 */
+  left:42rpx;
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #fff;
+  margin: 32rpx 0 0 0;
+  letter-spacing: 2rpx;
+  background: rgba(255, 255, 255, 0.13); /* 呼吸提示按钮透明度 */
+  backdrop-filter: blur(8px);
+  padding: 16rpx 32rpx;
+  border-radius: 24rpx;
+
+  z-index: 2;
+  color: rgb(140, 138, 138);
+}
+
+.bottom-nav, .custom-tab-bar, .tab-bar {
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  visibility: hidden !important;
+}

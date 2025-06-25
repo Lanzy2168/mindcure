@@ -1,0 +1,43 @@
+<view class="treehole-container">
+  <!-- 全屏半透明背景 -->
+  <view class="treehole-full-bg" style="background-image: url({{currentElement.bg}});"></view>
+
+  <!-- 顶部实色背景 -->
+  <view class="treehole-top-bg" style="background-image: url({{currentElement.bg}});">
+    <view class="header-quote">
+      <text>此刻树洞像未落雪的冬枝，</text>
+      <text>等着承接你情绪的</text>
+      <text>雪粒子</text>
+    </view>
+    <image class="mascot-half" src="{{currentElement.mascot}}" mode="aspectFit" />
+  </view>
+
+  <!-- 聊天内容 -->
+  <scroll-view 
+    class="chat-body" 
+    scroll-y="true" 
+    scroll-into-view="{{scrollIntoViewId}}"
+    style="padding-bottom: {{inputBarHeight}}px;"
+  >
+    <block wx:for="{{chatList}}" wx:key="id">
+      <view class="chat-item {{item.from}}">
+        <image wx:if="{{item.from === 'ai'}}" class="chat-avatar" src="{{currentElement.mascot}}" />
+        <view class="chat-bubble" style="background: {{item.from === 'user' ? currentElement.bgColor : '#fff'}};">
+          {{item.text}}
+        </view>
+        <image wx:if="{{item.from === 'user'}}" class="chat-avatar user-avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" />
+      </view>
+    </block>
+    <!-- 滚动锚点 -->
+    <view id="chat-anchor"></view>
+  </scroll-view>
+
+  <!-- 输入栏 -->
+  <view class="chat-input-bar">
+    <view class="emoji-btn" style="color: {{currentElement.bgColor}};">
+      <text class="iconfont">😊</text>
+    </view>
+    <input class="chat-input" placeholder="说点什么吧..." value="{{inputValue}}" bindinput="onInput" />
+    <button class="send-btn" style="background: {{currentElement.bgColor}};" bindtap="sendMessage">发送</button>
+  </view>
+</view> 

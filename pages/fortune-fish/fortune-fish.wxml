@@ -1,0 +1,23 @@
+<!--pages/fortune-fish/fortune-fish.wxml-->
+<view class="container" style="background-image: url({{bgImage}}); background-size: cover; background-position: center;">
+  <view class="glass-card merit-header">
+    <text class="merit-title">积福鱼</text>
+    <text class="merit-desc">通过敲击木鱼，积累功德值，放松身心，获得内心的平静与善意。</text>
+  </view>
+  <view class="glass-card merit-value-area">
+    <text class="merit-value-label">当前功德值</text>
+    <text class="merit-value">{{merit}}</text>
+    <button class="merit-history-btn" bindtap="viewHistory">历史记录</button>
+  </view>
+  <view class="glass-card fish-area">
+    <image src="/images/merit-fish.png" class="merit-fish {{fishAnimation ? 'tap' : ''}}" bindtap="tapMeritFish" mode="aspectFit" />
+    <view class="tap-tip">点击木鱼积累功德</view>
+    <view class="timer-area" wx:if="{{tapping}}">
+      <text class="timer-label">倒计时：</text>
+      <text class="timer-value">{{timeLeft}}s</text>
+    </view>
+    <view class="round-result" wx:if="{{!tapping && roundResult}}">
+      <text>本轮评价：{{roundResult}}</text>
+    </view>
+  </view>
+</view>

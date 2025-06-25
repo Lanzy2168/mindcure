@@ -1,0 +1,8 @@
+<view class="tab-bar">
+  <view class="tab-bar-item" wx:for="{{tabs}}" wx:key="index" bindtap="onTabTap" data-index="{{index}}">
+    <view class="tab-icon {{currentTab === index ? 'active' : ''}}">
+      <text class="icon-text">{{item.icon}}</text>
+    </view>
+    <text class="tab-text {{currentTab === index ? 'active' : ''}}">{{item.text}}</text>
+  </view>
+</view> 

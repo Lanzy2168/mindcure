@@ -1,0 +1,114 @@
+<view class="fortune-bell-container">
+  <!-- 顶部信息 -->
+  <view class="header card">
+    <view class="header-content">
+      <text class="page-title">积福鱼</text>
+      <text class="page-subtitle">敲打木鱼积累功德</text>
+    </view>
+    <view class="fortune-stats">
+      <text class="fortune-label">功德值</text>
+      <text class="fortune-value">{{fortunePoints}}</text>
+    </view>
+  </view>
+
+  <!-- 木鱼区域 -->
+  <view class="woodfish-section">
+    <view class="woodfish-container {{isAnimating ? 'animate' : ''}}">
+      <view class="woodfish" bindtap="tapWoodfish">
+        <text class="woodfish-emoji">🐟</text>
+        <view class="woodfish-shadow"></view>
+      </view>
+      <view class="ripple-effect" wx:if="{{showRipple}}"></view>
+    </view>
+    
+    <view class="tap-hint">
+      <text>轻触木鱼积累功德</text>
+    </view>
+  </view>
+
+  <!-- 功德记录 -->
+  <view class="fortune-records card">
+    <view class="records-header">
+      <text class="records-title">今日功德</text>
+      <text class="records-subtitle">今日已积累 {{todayPoints}} 功德</text>
+    </view>
+    
+    <view class="records-list">
+      <view 
+        wx:for="{{todayRecords}}" 
+        wx:key="index"
+        class="record-item"
+      >
+        <view class="record-time">
+          <text class="time-text">{{item.time}}</text>
+        </view>
+        <view class="record-points">
+          <text class="points-text">+{{item.points}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功德等级 -->
+  <view class="fortune-level card">
+    <view class="level-header">
+      <text class="level-title">功德等级</text>
+      <text class="level-subtitle">当前等级：{{currentLevel.name}}</text>
+    </view>
+    
+    <view class="level-progress">
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{levelProgress}}%"></view>
+      </view>
+      <view class="progress-text">
+        <text>{{currentPoints}} / {{nextLevel.points}} 功德</text>
+      </view>
+    </view>
+    
+    <view class="level-benefits">
+      <text class="benefits-title">当前等级福利：</text>
+      <view 
+        wx:for="{{currentLevel.benefits}}" 
+        wx:key="index"
+        class="benefit-item"
+      >
+        <text class="benefit-icon">✨</text>
+        <text class="benefit-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功德历史 -->
+  <view class="fortune-history card">
+    <view class="history-header">
+      <text class="history-title">功德历史</text>
+    </view>
+    
+    <view class="history-stats">
+      <view class="stat-item">
+        <text class="stat-value">{{totalPoints}}</text>
+        <text class="stat-label">总功德</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{totalDays}}</text>
+        <text class="stat-label">坚持天数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{maxStreak}}</text>
+        <text class="stat-label">最长连续</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="bottom-actions">
+    <button class="action-btn btn-secondary" bindtap="shareFortune">
+      <text class="action-icon">📤</text>
+      <text class="action-text">分享功德</text>
+    </button>
+    <button class="action-btn btn-cool" bindtap="resetFortune">
+      <text class="action-icon">🔄</text>
+      <text class="action-text">重置功德</text>
+    </button>
+  </view>
+</view> 

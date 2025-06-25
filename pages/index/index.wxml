@@ -1,0 +1,104 @@
+<view class="mindcure-container" style="background-image: url({{backgroundImage}}); background-size: cover; background-position: center;">
+  <!-- 顶部状态栏 -->
+  <view class="status-bar">
+    <view class="current-emotion">
+      <text class="emotion-label">当前状态：</text>
+      <text class="emotion-value">{{currentEmotion.name}}</text>
+    </view>
+    <view class="mascot-status">
+      <text class="mascot-emoji">{{mascotEmoji}}</text>
+    </view>
+  </view>
+
+  <!-- 半圆转盘区域 -->
+  <view class="dial-section">
+    <!-- 半圆转盘背景 -->
+    <view class="dial-background">
+      <view class="dial-semi-circle"></view>
+    </view>
+    
+    <!-- 情绪按钮半圆分布 -->
+    <view class="emotion-dial">
+      <view class="mascot-center">
+        <image wx:if="{{currentEmotion && mascotImage}}" class="mascot-img" src="{{mascotImage}}" mode="aspectFit" />
+        <text wx:else class="mascot-emoji">{{mascotEmoji}}</text>
+      </view>
+      <view 
+        wx:for="{{emotions}}" 
+        wx:key="id"
+        class="emotion-dial-button {{currentEmotion.id === item.id ? 'selected' : ''}} {{item.animation ? 'pulse' : ''}}"
+        style="transform: rotate({{item.angle}}deg) scaleX(1.5) scaleY(-1) translateY(-300rpx);"
+        bindtap="selectEmotion"
+        data-emotion="{{item}}"
+      >
+        <view 
+          class="emotion-dial-text-fix"
+          style="transform: scaleX(0.666) scaleY(-1) {{item.character === '恐' ? 'rotate(-90deg)' : (item.character === '忧' ? 'rotate(-45deg)' : (item.character === '怒' ? 'rotate(45deg)' : (item.character === '喜' ? 'rotate(90deg)' : ''))) }};"
+        >
+          <view class="emotion-dial-content">
+            <text class="emotion-dial-character">{{item.character}}</text>
+            <text class="emotion-dial-name">{{item.name}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 中心五行属性显示，绝对定位在半圆下方，不遮挡按钮和小喵龙 -->
+    <view class="center-element {{currentElement.animation ? 'fade-in' : ''}}" style="top: 80%; left: 50%; transform: translate(-50%, 0); z-index: 30;">
+      <view class="element-display">
+        <text class="element-character-large">{{currentElement.character}}</text>
+        <text class="element-name-large">{{currentElement.name}}</text>
+        <text class="element-description">{{currentElement.description}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日建议 -->
+  <view class="daily-suggestion card">
+    <view class="suggestion-header">
+      <text class="suggestion-title">今日建议</text>
+      <text class="suggestion-subtitle">基于您的情绪状态</text>
+    </view>
+    <view class="suggestion-content">
+      <view 
+        wx:for="{{dailySuggestions}}" 
+        wx:key="index"
+        class="suggestion-item"
+      >
+        <text class="suggestion-icon">💡</text>
+        <text class="suggestion-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 疗愈功能模块 -->
+  <view class="healing-modules">
+    <!-- <view class="modules-title">
+      <text>今日疗愈</text>
+    </view> -->
+    <view class="modules-grid">
+      <view 
+        wx:for="{{healingModules}}" 
+        wx:key="id"
+        class="module-card"
+        bindtap="navigateToModule"
+        data-module="{{item}}"
+      >
+        <!-- 使用 image 标签做背景，更可靠 -->
+        <image class="module-card-bg" src="/images/bubble-button-bg.png" mode="aspectFill"></image>
+        
+        <view class="module-info">
+          <text class="module-name">{{item.name}}</text>
+          <text class="module-desc">{{item.description}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+
+  <!-- 底部导航提示 -->
+  <!-- <view class="nav-hint">
+    <text>底部导航栏可快速切换页面</text>
+  </view> -->
+</view> 

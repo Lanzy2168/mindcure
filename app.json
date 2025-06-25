@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/splash/splash",
+    "pages/emotion-select/emotion-select",
+    "pages/index/index",
+    "pages/discover/discover",
+    "pages/treehole/treehole",
+    "pages/profile/profile",
+    "pages/heart-rhythm/heart-rhythm",
+    "pages/fortune-bell/fortune-bell",
+    "pages/mind-journey/mind-journey",
+    "pages/fortune-fish/fortune-fish",
+    "pages/breathing-adjust/breathing-adjust"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "MindCure",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f5f5f5"
+  },
+    "lazyCodeLoading": "requiredComponents",
+    "tabBar": {
+    "color": "#888",
+    "selectedColor": "#7b8fff",
+    "backgroundColor": "#fff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home-icon.png",
+        "selectedIconPath": "images/home-icon.png"
+      },
+      {
+        "pagePath": "pages/treehole/treehole",
+        "text": "树洞",
+        "iconPath": "images/treehole-icon.png",
+        "selectedIconPath": "images/treehole-icon.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/profile-icon.png",
+        "selectedIconPath": "images/profile-icon.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+} 

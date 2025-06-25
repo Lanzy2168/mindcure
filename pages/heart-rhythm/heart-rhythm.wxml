@@ -1,0 +1,71 @@
+<view class="page-container">
+  <!-- 动态背景图 -->
+  <image class="dynamic-bg" src="{{backgroundImage}}" mode="aspectFill"></image>
+  <view class="bg-overlay"></view>
+
+  <scroll-view scroll-y class="content-wrapper">
+    <!-- 顶部标题 -->
+    <view class="header-section">
+      <text class="header-title">随心律动</text>
+    </view>
+    
+    <!-- 主播放卡片 -->
+    <view class="main-card">
+      <image class="main-card-bg" src="{{currentTrack.cover}}" mode="aspectFill"></image>
+      <view class="main-card-overlay"></view>
+      <text class="main-card-title">{{currentTrack.element || currentElement.name}} 元素</text>
+    </view>
+    <!-- 新增：主卡片下方进度条 -->
+    <view class="main-progress-bar-container">
+      <text class="time-text">{{currentTime}}</text>
+      <slider class="progress-slider" 
+        bindchange="onSliderChange" 
+        value="{{progress}}" 
+        block-size="12" 
+        activeColor="#fff" 
+        backgroundColor="rgba(255, 255, 255, 0.2)"
+      />
+      <text class="time-text">{{totalTime}}</text>
+    </view>
+
+    <!-- 播放控制与声轨 -->
+    <view class="controls-section">
+      <!-- 声轨变化条 -->
+      <view class="visualizer-container">
+        <view class="visualizer-bar {{isPlaying ? 'animating' : ''}}"></view>
+        <view class="visualizer-bar {{isPlaying ? 'animating' : ''}}" style="animation-delay: 0.2s;"></view>
+        <view class="visualizer-bar {{isPlaying ? 'animating' : ''}}" style="animation-delay: 0.4s;"></view>
+        <view class="visualizer-bar {{isPlaying ? 'animating' : ''}}" style="animation-delay: 0.1s;"></view>
+        <view class="visualizer-bar {{isPlaying ? 'animating' : ''}}" style="animation-delay: 0.3s;"></view>
+      </view>
+      <!-- 功能按钮 -->
+      <view class="action-buttons">
+        <view class="action-btn" bindtap="changePlayMode">
+          <image class="action-icon" src="{{playModeIcon === '🔁' ? '/images/icons/loop-all.png' : '/images/icons/loop-one.png'}}"></image>
+        </view>
+        <view class="action-btn main-action-btn" bindtap="togglePlay">
+            <image class="action-icon large" src="{{isPlaying ? '/images/icons/pause-white.png' : '/images/icons/play-white.png'}}"></image>
+        </view>
+        <view class="action-btn" bindtap="replayTrack">
+          <image class="action-icon" src="/images/icons/replay.png"></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- 可选歌曲列表 -->
+    <view class="song-list-section">
+      <view class="list-title">歌单专享</view>
+      <block wx:for="{{musicTracks}}" wx:key="title">
+        <view class="song-item {{currentTrack.title === item.title ? 'active' : ''}}" bindtap="selectTrack" data-track="{{item}}">
+          <text class="song-title">{{item.title}}</text>
+          <view wx:if="{{currentTrack.title === item.title}}" class="playing-indicator">
+            <view class="playing-bar"></view>
+            <view class="playing-bar" style="animation-delay: 0.2s;"></view>
+            <view class="playing-bar" style="animation-delay: 0.4s;"></view>
+          </view>
+          <text wx:else class="song-play-icon">▶</text>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view> 

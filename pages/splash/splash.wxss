@@ -1,0 +1,311 @@
+.splash-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 背景渐变 */
+.background-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    #FFE5F1 0%, 
+    #E6F3FF 25%, 
+    #F0FFF0 50%, 
+    #FFF8DC 75%, 
+    #F5F5DC 100%);
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background: linear-gradient(135deg, 
+      #FFE5F1 0%, 
+      #E6F3FF 25%, 
+      #F0FFF0 50%, 
+      #FFF8DC 75%, 
+      #F5F5DC 100%);
+  }
+  50% {
+    background: linear-gradient(135deg, 
+      #F0FFF0 0%, 
+      #FFF8DC 25%, 
+      #F5F5DC 50%, 
+      #FFE5F1 75%, 
+      #E6F3FF 100%);
+  }
+}
+
+/* 云朵装饰 */
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50rpx;
+  animation: float 6s ease-in-out infinite;
+}
+
+.cloud-1 {
+  width: 120rpx;
+  height: 60rpx;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.cloud-2 {
+  width: 80rpx;
+  height: 40rpx;
+  top: 30%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.cloud-3 {
+  width: 100rpx;
+  height: 50rpx;
+  bottom: 30%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-20rpx) scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* 主要内容 */
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(60rpx);
+}
+
+.content.fade-in {
+  animation: contentFadeIn 1s ease-out forwards;
+}
+
+@keyframes contentFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo区域 */
+.logo-container {
+  margin-bottom: 60rpx;
+}
+
+.logo-circle {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFB6C1, #E6E6FA);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20rpx 60rpx rgba(255, 182, 193, 0.3);
+  animation: logoPulse 2s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 20rpx 60rpx rgba(255, 182, 193, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 30rpx 80rpx rgba(255, 182, 193, 0.4);
+  }
+}
+
+.logo-text {
+  font-size: 60rpx;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 标题区域 */
+.title-container {
+  text-align: center;
+  margin-bottom: 80rpx;
+}
+
+.app-title {
+  display: block;
+  font-size: 72rpx;
+  font-weight: bold;
+  color: #4A4A4A;
+  margin-bottom: 16rpx;
+  text-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+  animation: titleGlow 2s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    text-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    text-shadow: 0 8rpx 16rpx rgba(255, 182, 193, 0.3);
+  }
+}
+
+.app-subtitle {
+  display: block;
+  font-size: 32rpx;
+  color: #8A8A8A;
+  font-weight: 500;
+}
+
+/* 小喵龙形象 */
+.mascot-container {
+  margin-bottom: 80rpx;
+}
+
+.mascot {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #98FB98, #FFE4B5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16rpx 48rpx rgba(152, 251, 152, 0.3);
+  transition: all 0.3s ease;
+}
+
+.mascot.bounce {
+  animation: mascotBounce 1s ease-in-out;
+}
+
+@keyframes mascotBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30rpx);
+  }
+  60% {
+    transform: translateY(-15rpx);
+  }
+}
+
+.mascot-emoji {
+  font-size: 80rpx;
+  filter: drop-shadow(0 4rpx 8rpx rgba(0, 0, 0, 0.1));
+}
+
+/* 加载区域 */
+.loading-container {
+  width: 400rpx;
+  text-align: center;
+}
+
+.loading-bar {
+  width: 100%;
+  height: 8rpx;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 4rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.loading-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #FFB6C1, #E6E6FA);
+  border-radius: 4rpx;
+  transition: width 0.3s ease;
+  box-shadow: 0 2rpx 8rpx rgba(255, 182, 193, 0.3);
+}
+
+.loading-text {
+  font-size: 24rpx;
+  color: #8A8A8A;
+  font-weight: 500;
+}
+
+.splash-bg {
+  position: fixed;
+  left: 0; right: 0; top: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 9999;
+}
+.splash-wallpaper {
+  position: absolute;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  z-index: 1;
+}
+.progress-bar-container {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 120rpx;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+.progress-bar-bg {
+  width: 70vw;
+  height: 28rpx;
+  background: rgba(255,255,255,0.35);
+  border-radius: 32rpx;
+  border: 2rpx solid rgba(255,255,255,0.45);
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(255,255,255,0.18);
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffb6b6 0%, #ffb6b6 100%);
+  border-radius: 32rpx 0 0 32rpx;
+  box-shadow: 0 0 12rpx #ffb6b6, 0 0 24rpx #fff;
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.progress-tip {
+  margin-top: 18rpx;
+  color: #fff;
+  font-size: 28rpx;
+  text-shadow: 0 2rpx 8rpx rgba(255,255,255,0.5), 0 1rpx 2rpx rgba(0,0,0,0.08);
+  letter-spacing: 2rpx;
+  font-weight: 500;
+}
+.bubble {
+  position: absolute;
+  width: 38rpx;
+  height: 38rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 40%, #fff6fa 60%, #ffd6e6 100%);
+  box-shadow: 0 0 18rpx 8rpx #fff6fa, 0 0 32rpx 0 #ffd6e6;
+  opacity: 0.85;
+  animation: bubble-float 2.8s infinite alternate, bubble-glow 1.6s infinite alternate;
+}
+@keyframes bubble-float {
+  0% { transform: scale(1) translateY(0); opacity: 0.85; }
+  50% { transform: scale(1.12) translateY(-12rpx); opacity: 1; }
+  100% { transform: scale(0.95) translateY(8rpx); opacity: 0.7; }
+}
+@keyframes bubble-glow {
+  0% { box-shadow: 0 0 18rpx 8rpx #fff6fa, 0 0 32rpx 0 #ffd6e6; }
+  100% { box-shadow: 0 0 32rpx 16rpx #fff6fa, 0 0 48rpx 0 #ffd6e6; }
+} 
