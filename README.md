@@ -103,7 +103,7 @@ README.md # 项目说明文件
 ## 运行方法
 1. 克隆本项目至本地
 2. 使用微信开发者工具打开 `/miniprogram5` 文件夹
-3. 填入 `.env` 文件中的 API KEY
+3. 填入 `treehole\treehole.js` 文件中的 API KEY
 4. 运行并调试（推荐真机测试）
 
 ## 📄 许可证
